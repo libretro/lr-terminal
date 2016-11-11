@@ -9,7 +9,7 @@ and exposing the interfaces of the library to Lua through SWIG. An exemple of Lu
 in the ressources and built along the Lua core.
 
 # License
-This software is released under the MIT License. See COPYING for more info.
+This software is released under the MIT License. See LICENSE for more info.
 
 # Building
 This library depends on [libretro-common](https://github.com/libretro/libretro-common).
