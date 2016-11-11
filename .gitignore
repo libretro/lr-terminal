@@ -1,0 +1,6 @@
+deps
+**/*.o
+**/*.so
+**/*.ztlua
+swig/**
+!swig/*.i
