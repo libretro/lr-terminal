@@ -38,6 +38,14 @@ namespace LRTerminal
   {
 #include "fonts/8x13O/font.inc"
   }
+  namespace Fonts::Terminus
+  {
+#include "fonts/Terminus/font.inc"
+  }
+  namespace Fonts::TerminusBold
+  {
+#include "fonts/TerminusBold/font.inc"
+  }
 
   // Constuctor
   BuiltinFonts::BuiltinFonts()
@@ -90,6 +98,20 @@ namespace LRTerminal
                     std::forward_as_tuple(C_GLYPH_WIDTH,
                                           C_GLYPH_HEIGHT));
     Fonts::MiscMisc8x13O::load(*this);
+
+    // Terminus
+    m_fonts.emplace(std::piecewise_construct,
+                    std::forward_as_tuple(Font::TERMINUS),
+                    std::forward_as_tuple(C_GLYPH_WIDTH,
+                                          C_GLYPH_HEIGHT));
+    Fonts::Terminus::load(*this);
+
+    // Terminus Bold
+    m_fonts.emplace(std::piecewise_construct,
+                    std::forward_as_tuple(Font::TERMINUS_BOLD),
+                    std::forward_as_tuple(C_GLYPH_WIDTH,
+                                          C_GLYPH_HEIGHT));
+    Fonts::TerminusBold::load(*this);
 
     // Custom font, no glyph associated (outside the blank glyph)
     m_fonts.emplace(std::piecewise_construct,

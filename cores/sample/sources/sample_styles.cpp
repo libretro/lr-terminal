@@ -86,6 +86,8 @@ namespace Sample
     m_fontSelector.addValue("8x13", LRTerminal::Font::MISC_MISC_8x13);
     m_fontSelector.addValue("8x13 B", LRTerminal::Font::MISC_MISC_8x13_BOLD);
     m_fontSelector.addValue("8x13 O", LRTerminal::Font::MISC_MISC_8x13_OBLIQUE);
+    m_fontSelector.addValue("Terminus", LRTerminal::Font::TERMINUS);
+    m_fontSelector.addValue("Terminus B", LRTerminal::Font::TERMINUS_BOLD);
     // Default is Default
 
     // Alignment selector

@@ -17,6 +17,8 @@ namespace LRTerminal
     MISC_MISC_8x13,
     MISC_MISC_8x13_BOLD,
     MISC_MISC_8x13_OBLIQUE,
+    TERMINUS,
+    TERMINUS_BOLD,
     CUSTOM,
   };
 
