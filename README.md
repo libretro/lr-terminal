@@ -29,12 +29,12 @@ However, the library does not currently support unicode features like combining 
 bidirectionnal text or full-width characters.
 Each code point of a string is considered a different character.
 
-The fonts are currently provided as xpm images in the ressources, and compiled into the library.
+The fonts are currently provided as xbm images in the ressources, and compiled into the library.
 By changing the sources, other fonts can be provided, but it is also possible to define glyphs
 in code with the "CUSTOM" font. This font does not initially contain any character.
 Currently, the glyphs are 8x16 in pixel size and there is no way to change this.
 All the provided font are in that size, even the 8x13 fonts from Xorg.
-Because of the xpm format, the current built-in glyphs are monochrome, however,
+Because of the xbm format, the current built-in glyphs are monochrome, however,
 the library supports greyscale glyphs (currently, only user-defined glyphs can use this feature).
 
 The library provide access to states of libretro controllers.
