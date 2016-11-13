@@ -129,6 +129,10 @@ namespace LRTLua
         lua_pop(m_Lua, 1);
       }
     }
+    else
+    {
+      log(LRTerminal::LogLevel::ERROR, "lrterminal.update is not a function\n");
+    }
     lua_pop(m_Lua, 1);
   }
 
@@ -279,8 +283,15 @@ namespace LRTLua
     std::string contents;
     if (_getFileContents("main.lua", contents))
     {
-      luaL_dostring(m_Lua, contents.c_str());
-      ret = true;
+      if (luaL_dostring(m_Lua, contents.c_str()))
+      {
+        log(LRTerminal::LogLevel::ERROR, "%s\n", lua_tostring(m_Lua, -1));
+        lua_pop(m_Lua, 1);
+      }
+      else
+      {
+        ret = true;
+      }
     }
     return ret;
   }
@@ -298,6 +309,10 @@ namespace LRTLua
         log(LRTerminal::LogLevel::ERROR, "%s\n", lua_tostring(m_Lua, -1));
         lua_pop(m_Lua, 1);
       }
+    }
+    else
+    {
+      log(LRTerminal::LogLevel::ERROR, "lrterminal.conf is not a function\n");
     }
     // read the values width and height of settings
     lua_getfield(m_Lua, -1, "settings");
@@ -322,6 +337,10 @@ namespace LRTLua
         lua_pop(m_Lua, 1);
       }
     }
+    else
+    {
+      log(LRTerminal::LogLevel::ERROR, "lrterminal.init is not a function\n");
+    }
     lua_pop(m_Lua, 1);
   }
 
@@ -337,6 +356,10 @@ namespace LRTLua
         log(LRTerminal::LogLevel::ERROR, "%s\n", lua_tostring(m_Lua, -1));
         lua_pop(m_Lua, 1);
       }
+    }
+    else
+    {
+      log(LRTerminal::LogLevel::ERROR, "lrterminal.deinit is not a function\n");
     }
     lua_pop(m_Lua, 1);
   }
@@ -358,8 +381,16 @@ namespace LRTLua
       std::string fileContents;
       if (_getFileContents(fileName, fileContents))
       {
-        luaL_loadbuffer(L, fileContents.c_str(), fileContents.size(), fileName.c_str());
-        ret = 1;
+        int err = luaL_loadbuffer(L, fileContents.c_str(), fileContents.size(), fileName.c_str());
+        if (err == LUA_OK)
+        {
+          ret = 1;
+        }
+        else
+        {
+          log(LRTerminal::LogLevel::ERROR, "%s\n", lua_tostring(m_Lua, -1));
+          lua_pop(m_Lua, 1);
+        }
       }
     }
     return ret;
