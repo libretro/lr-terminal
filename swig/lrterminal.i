@@ -25,3 +25,27 @@ LRTerminal::Terminal* terminal()
 }
 %}
 LRTerminal::Terminal* terminal();
+
+/* A way to easily convert a char* to a single char32_t */
+%{
+#include <locale>
+#include <codecvt>
+std::u32string _stringToU32String(const std::string str)
+{
+  // Convert from utf-8 char* to utf-32 char32_t* in order to update the console cells
+  std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> u32conv;
+  return u32conv.from_bytes(str);
+}
+char32_t codePoint(const char* in)
+{
+    char32_t ret = U'\0';
+    std::string strIn = in;
+    if (strIn != "")
+    {
+      std::u32string strU32 = _stringToU32String(std::string(in));
+      ret = strU32[0];
+    }
+    return ret;
+}
+%}
+char32_t codePoint(const char* in);
